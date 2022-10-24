@@ -25,12 +25,15 @@ protected:
 private:
 	class ATank* Tank;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, Category = "Combat", BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float FireRange = 300.f;
 
 	FTimerHandle FireRateTimerHandler;
+
+	UPROPERTY(EditAnywhere, Category = "Combat", BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float FireRate = 2.0f;
 	void CheckFireCondition();
+
 
 	bool InFireRange();
 };

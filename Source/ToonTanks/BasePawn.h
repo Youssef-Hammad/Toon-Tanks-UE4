@@ -33,4 +33,7 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Tank Variables", meta = (AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint;
 
+	UPROPERTY(EditAnywhere, Category = "Combat");
+	TSubclassOf<class AProjectile> ProjectileClass;
+
 };
