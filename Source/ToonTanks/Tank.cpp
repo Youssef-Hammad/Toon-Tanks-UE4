@@ -9,7 +9,6 @@
 
 void ATank::Move(float Value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Move Value: %f"), Value);
 
 	FVector DeltaLocation(0.f);
 	float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
