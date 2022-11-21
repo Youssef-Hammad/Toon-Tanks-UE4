@@ -31,7 +31,7 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	float TurnSpeed = 120.f;
 
-	APlayerController* PlayerControllerRef;
+	APlayerController* TankPlayerController;
 
 public:
 	ATank();
@@ -41,6 +41,10 @@ public:
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	void HandleDestruction();
+
+	APlayerController* GetTankPlayerController() const { return TankPlayerController; }
 
 protected:
 	// Called when the game starts or when spawned
