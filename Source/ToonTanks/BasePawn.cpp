@@ -6,6 +6,8 @@
 #include <Components/CapsuleComponent.h>
 #include <DrawDebugHelpers.h>
 #include "Projectile.h"
+#include <Kismet/GameplayStatics.h>
+#include <Camera/CameraShakeBase.h>
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -30,6 +32,12 @@ ABasePawn::ABasePawn()
 void ABasePawn::HandleDestruction()
 {
 	// TODO: Handle all visual/sound effects
+	if(DeathExplosion)
+		UGameplayStatics::SpawnEmitterAtLocation(this, DeathExplosion, GetActorLocation(), GetActorRotation());
+	if(DeathSound)
+		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
+	if (DeathCameraShakeClass)
+		GetWorld()->GetFirstPlayerController()->ClientPlayCameraShake(DeathCameraShakeClass);
 }
 
 void ABasePawn::RotateTurret(FVector LookAtTarget)
@@ -45,4 +53,6 @@ void ABasePawn::Fire()
 
 	auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass, ProjectileSpawnPoint->GetComponentLocation(), ProjectileSpawnPoint->GetComponentRotation());
 	Projectile->SetOwner(this);
+	if(LaunchSound)
+		UGameplayStatics::PlaySoundAtLocation(this, LaunchSound, GetActorLocation());
 }
